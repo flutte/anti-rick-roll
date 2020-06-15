@@ -4,15 +4,16 @@ import requests
 url = 'https://www.youtube.com/watch?v=3DxXa2lWPz0' # url to yt link here
 
 # Keywords to check for
-keywords = [
-    'Rick Astley',
-    'rickroll',
-    'rick',
-    'astley',
-    'Never gonna',
-    'Give you up',
-    'Never gonna give you up'
-]
+keywords = []
+
+try:
+    with open("keywords.txt") as f:
+        for line in f.read():
+            keywords.append(line)
+except FileNotFoundError:
+    print("Create keywords.txt in . and put atleast 1 keyword")
+    input()
+    exit()
 
 content = requests.get(url)
 
